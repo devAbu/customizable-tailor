@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  background-image: radial-gradient(circle, #ffffff, #dbdbdb, #cccccc, #b3a9a9);
+  overflow: hidden;
+}
+
+aside {
+  background-color: grey;
+  z-index: 999;
+  width: 7%;
+  padding: 0.5em;
+  overflow-y: scroll;
+  height: 97.5%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-container {
+    background-color: white;
+    padding: 0.3em 1em;
+    margin: 0.5em 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    img {
+      width: 75px;
+      pointer-events: none;
+    }
+
+    .model-title {
+      text-align: center;
+      pointer-events: none;
+    }
+  }
+}
+
+.category-options {
+  margin-left: 10%;
+  background-color: white;
+  width: 17%;
+  margin-top: 1em;
+  z-index: 999;
+  -webkit-box-shadow: 6px 4px 0px 0px rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 6px 4px 0px 0px rgba(0, 0, 0, 0.19);
+  box-shadow: 6px 4px 0px 0px rgba(0, 0, 0, 0.19);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .options-title {
+    padding: 0.5em;
+    font-size: 20px;
+    background-color: grey;
+    pointer-events: none;
+
+    span {
+      float: right;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .options-body {
+    .options-content {
+      padding: 0.5em;
+      display: flex;
+
+      p {
+        pointer-events: none;
+        font-size: 20px;
+        align-self: center;
+        margin-left: 10%;
+      }
+
+      img {
+        pointer-events: none;
+      }
+    }
+
+    .active {
+      background-color: rgb(212, 212, 248);
+    }
+  }
+}
+
+main {
+  position: absolute;
+  top: 0;
+  margin-left: 33%;
+  width: 65%;
+
+  .main-image {
+    img {
+      width: 55%;
+    }
+
+    .price {
+      position: absolute;
+      right: 0;
+      font-size: 2.5em;
+      color: white;
+      top: 10%;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.selected {
+  animation: zoom 0.8s ease both;
+}
