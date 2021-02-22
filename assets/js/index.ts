@@ -5,6 +5,7 @@ let total_price = document.querySelector('.price')!
 
 let main_image = document.querySelector('.main-image img')!
 
+// Change CATEGORY
 categories.addEventListener('click', (e) => {
   let elems = document.querySelectorAll('.category-container')
   let hiddenElems = document.querySelectorAll('.category-options')
@@ -37,12 +38,14 @@ categories.addEventListener('click', (e) => {
     }
   }
 })
-
+// CLOSE BUTTON
 /* close_button.addEventListener('click', (e) => {
   console.log('Close Model -- X')
   e.target.parentNode.parentNode.classList.add('hidden')
 }) */
 
+// CHANGE IMAGE
+/* 
 options_body.addEventListener('click', (e) => { 
 
   console.log(e.target)
@@ -78,4 +81,4 @@ options_body.addEventListener('click', (e) => {
 
     main_image.src = './assets/images/muskaKosulja.webp'
   }
-})
+}) */

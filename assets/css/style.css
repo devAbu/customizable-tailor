@@ -78,6 +78,21 @@ aside .category-container .model-title {
 .category-options .options-body .active {
   background-color: #d4d4f8;
 }
+.category-options.collar-content,
+.category-options.cuff-content {
+  width: 30%;
+}
+.category-options.collar-content small,
+.category-options.cuff-content small {
+  margin-left: 10%;
+}
+.category-options.collar-content .content,
+.category-options.cuff-content .content {
+  width: 100%;
+}
+.category-options.cuff-content {
+  width: 25%;
+}
 main {
   position: absolute;
   top: 0;
