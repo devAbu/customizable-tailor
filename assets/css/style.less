@@ -18,6 +18,7 @@ aside {
   position: fixed;
   top: 0;
   left: 0;
+  pointer-events: none;
 
   &::-webkit-scrollbar {
     display: none;
@@ -27,6 +28,7 @@ aside {
     background-color: white;
     padding: 0.3em 1em;
     margin: 0.5em 0;
+    pointer-events: auto;
 
     &:hover {
       cursor: pointer;
@@ -66,6 +68,7 @@ aside {
 
     span {
       float: right;
+      pointer-events: all;
 
       &:hover {
         cursor: pointer;

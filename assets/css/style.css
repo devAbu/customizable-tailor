@@ -17,6 +17,7 @@ aside {
   position: fixed;
   top: 0;
   left: 0;
+  pointer-events: none;
 }
 aside::-webkit-scrollbar {
   display: none;
@@ -25,6 +26,7 @@ aside .category-container {
   background-color: white;
   padding: 0.3em 1em;
   margin: 0.5em 0;
+  pointer-events: auto;
 }
 aside .category-container:hover {
   cursor: pointer;
@@ -58,6 +60,7 @@ aside .category-container .model-title {
 }
 .category-options .options-title span {
   float: right;
+  pointer-events: all;
 }
 .category-options .options-title span:hover {
   cursor: pointer;
