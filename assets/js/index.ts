@@ -4,6 +4,17 @@ let total_price = document.querySelector('.price')!
 
 let main_image = document.querySelector('.main-image img')!
 
+localStorage.setItem('type', 'man')
+localStorage.setItem('sleeve', 'long')
+localStorage.setItem('collar', 'business classic')
+localStorage.setItem('cuff', 'single button')
+
+fetch('./php/getImage.php?type=man&sleeve=long&collar=business classic&cuff=single button').then(function(response) {
+    return response.blob();
+  }).then(function(myBlob) {
+    var objectURL = URL.createObjectURL(myBlob);
+    main_image.src = objectURL;
+  });
 
 // Change CATEGORY
 categories.addEventListener('click', (e) => {
@@ -13,10 +24,6 @@ categories.addEventListener('click', (e) => {
    for (let i = 0; i < elems.length; i++) {
     elems[i].classList.remove('selected')
   }
-/*
-  for (let i = 0; i < hiddenElems.length; i++) {
-    hiddenElems[i].classList.add('hidden')
-  } */
   
   let category = e.target!
   category.classList.add('selected')
@@ -71,47 +78,98 @@ categories.addEventListener('click', (e) => {
 let closeButtons = document.getElementsByClassName('close-options')
 
 Array.prototype.forEach.call(closeButtons, (element) => {
-  element.addEventListener('click', (e) => {
+  element.addEventListener('click', (e: any) => {
     console.log('Close Model -- X')
     e.target.parentNode.parentNode.classList.add('hidden')
   })
 })
 
 // CHANGE IMAGE
-/* 
-options_body.addEventListener('click', (e) => { 
 
-  console.log(e.target)
+let options = document.getElementsByClassName('options-body')!
 
+Array.prototype.forEach.call(options, (element) => {
+  element.addEventListener('click', (e: any) => {
   let woman = document.querySelector('.woman')!
   let man = document.querySelector('.man')!
 
   let long = document.querySelector('.long')!
   let short = document.querySelector('.short')!
 
+  let businessClassic = document.querySelector('.businessClassic')!
+  let cut_awayClassic = document.querySelector('.cut-awayClassic')!
+  let cut_awayModern = document.querySelector('.cut-awayModern')!
+
+  let singleButton = document.querySelector('.singleButton')!
+  let change = document.querySelector('.change')!
+  let doubleButton = document.querySelector('.doubleButton')!
+
+    /* let type = "man";
+    let sleeve = "long";
+    let collar = "business classic";
+    let cuff = "single button" */
+  
   if (e.target.classList.contains('woman')) {
     man.classList.remove('active')
     woman.classList.add('active')
-
-    main_image.src = './assets/images/zenskaKosulja.webp'
-    total_price.innerHTML = "50 $"
+    localStorage.setItem("type", "woman")
   } else if(e.target.classList.contains('man')){
     woman.classList.remove('active')
     man.classList.add('active')
-
-    main_image.src = './assets/images/muskaKosulja.webp'
-    total_price.innerHTML = "100 $"
-  }
-  
+    localStorage.setItem("type", "man")
+    }
+      
   if (e.target.classList.contains('short')) {
     long.classList.remove('active')
     short.classList.add('active')
-
-    main_image.src = './assets/images/kratkiRukav16.webp'
+    localStorage.setItem("sleeve", "short")
   }else if(e.target.classList.contains('long')){
     short.classList.remove('active')
     long.classList.add('active')
-
-    main_image.src = './assets/images/muskaKosulja.webp'
+    localStorage.setItem("sleeve", "long")
   }
-}) */
+
+  if (e.target.classList.contains('businessClassic')) {
+    businessClassic.classList.add('active')
+    cut_awayClassic.classList.remove('active')
+    cut_awayModern.classList.remove('active')
+    localStorage.setItem("collar", "business classic")
+  } else if (e.target.classList.contains('cut-awayClassic')) {
+    businessClassic.classList.remove('active')
+    cut_awayClassic.classList.add('active')
+    cut_awayModern.classList.remove('active')
+    localStorage.setItem("collar", "cut-away classic")
+  }else if (e.target.classList.contains('cut-awayModern')) {
+    businessClassic.classList.remove('active')
+    cut_awayClassic.classList.remove('active')
+    cut_awayModern.classList.add('active')
+    localStorage.setItem("collar", "cut-away modern")
+  }
+
+  if (e.target.classList.contains('singleButton')) {
+    singleButton.classList.add('active')
+    change.classList.remove('active')
+    doubleButton.classList.remove('active')
+    localStorage.setItem("cuff", "single button")
+  } else if (e.target.classList.contains('change')) {
+    singleButton.classList.remove('active')
+    change.classList.add('active')
+    doubleButton.classList.remove('active')
+    localStorage.setItem("cuff", "change")
+  }else if (e.target.classList.contains('doubleButton')) {
+    singleButton.classList.remove('active')
+    change.classList.remove('active')
+    doubleButton.classList.add('active')
+    localStorage.setItem("cuff", "double button")
+    }
+
+    
+  fetch('./php/getImage.php?type='+localStorage.getItem('type')+'&sleeve='+localStorage.getItem('sleeve')+'&collar='+localStorage.getItem('collar')+'&cuff='+localStorage.getItem('cuff')).then(function(response) {
+    return response.blob();
+  }).then(function(myBlob) {
+    var objectURL = URL.createObjectURL(myBlob);
+    main_image.src = objectURL;
+  });
+
+  })
+})

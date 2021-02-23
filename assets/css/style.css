@@ -101,6 +101,7 @@ main {
   top: 0;
   margin-left: 33%;
   width: 65%;
+  z-index: -1;
 }
 main .main-image img {
   width: 55%;
