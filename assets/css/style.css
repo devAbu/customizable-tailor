@@ -82,15 +82,18 @@ aside .category-container .model-title {
   background-color: #d4d4f8;
 }
 .category-options.collar-content,
-.category-options.cuff-content {
+.category-options.cuff-content,
+.category-options.material-content {
   width: 30%;
 }
 .category-options.collar-content small,
-.category-options.cuff-content small {
+.category-options.cuff-content small,
+.category-options.material-content small {
   margin-left: 10%;
 }
 .category-options.collar-content .content,
-.category-options.cuff-content .content {
+.category-options.cuff-content .content,
+.category-options.material-content .content {
   width: 100%;
 }
 .category-options.cuff-content {

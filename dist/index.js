@@ -7,6 +7,7 @@ localStorage.setItem('type', 'man');
 localStorage.setItem('sleeve', 'long');
 localStorage.setItem('collar', 'business classic');
 localStorage.setItem('cuff', 'single button');
+localStorage.setItem('material', 'white');
 fetch('./php/getImage.php?type=man&sleeve=long&collar=business classic&cuff=single button').then(function (response) {
     return response.blob();
 }).then(function (myBlob) {
@@ -14,6 +15,7 @@ fetch('./php/getImage.php?type=man&sleeve=long&collar=business classic&cuff=sing
     main_image.src = objectURL;
 });
 categories.addEventListener('click', (e) => {
+    console.log('juhu');
     let elems = document.querySelectorAll('.category-container');
     let hiddenElems = document.querySelectorAll('.category-options');
     for (let i = 0; i < elems.length; i++) {
@@ -71,6 +73,18 @@ categories.addEventListener('click', (e) => {
             model_content.classList.add('hidden');
         }
     }
+    else if (category.classList.contains('material')) {
+        for (let i = 0; i < hiddenElems.length; i++) {
+            hiddenElems[i].classList.add('hidden');
+        }
+        let model_content = document.querySelector('.material-content');
+        if (model_content.classList.contains('hidden')) {
+            model_content.classList.remove('hidden');
+        }
+        else {
+            model_content.classList.add('hidden');
+        }
+    }
 });
 let closeButtons = document.getElementsByClassName('close-options');
 Array.prototype.forEach.call(closeButtons, (element) => {
@@ -92,6 +106,7 @@ Array.prototype.forEach.call(options, (element) => {
         let singleButton = document.querySelector('.singleButton');
         let change = document.querySelector('.change');
         let doubleButton = document.querySelector('.doubleButton');
+        let envelope = document.querySelector('.envelope');
         if (e.target.classList.contains('woman')) {
             man.classList.remove('active');
             woman.classList.add('active');
@@ -106,11 +121,15 @@ Array.prototype.forEach.call(options, (element) => {
             long.classList.remove('active');
             short.classList.add('active');
             localStorage.setItem("sleeve", "short");
+            document.querySelector('.cuff').style.pointerEvents = 'none';
+            document.querySelector('.cuff').style.opacity = 0.5;
         }
         else if (e.target.classList.contains('long')) {
             short.classList.remove('active');
             long.classList.add('active');
             localStorage.setItem("sleeve", "long");
+            document.querySelector('.cuff').style.pointerEvents = 'auto';
+            document.querySelector('.cuff').style.opacity = 1;
         }
         if (e.target.classList.contains('businessClassic')) {
             businessClassic.classList.add('active');
@@ -134,19 +153,29 @@ Array.prototype.forEach.call(options, (element) => {
             singleButton.classList.add('active');
             change.classList.remove('active');
             doubleButton.classList.remove('active');
+            envelope.classList.remove('active');
             localStorage.setItem("cuff", "single button");
         }
         else if (e.target.classList.contains('change')) {
             singleButton.classList.remove('active');
             change.classList.add('active');
             doubleButton.classList.remove('active');
+            envelope.classList.remove('active');
             localStorage.setItem("cuff", "change");
         }
         else if (e.target.classList.contains('doubleButton')) {
             singleButton.classList.remove('active');
             change.classList.remove('active');
             doubleButton.classList.add('active');
+            envelope.classList.remove('active');
             localStorage.setItem("cuff", "double button");
+        }
+        else if (e.target.classList.contains('envelope')) {
+            singleButton.classList.remove('active');
+            change.classList.remove('active');
+            doubleButton.classList.remove('active');
+            envelope.classList.add('active');
+            localStorage.setItem("cuff", "envelope");
         }
         fetch('./php/getImage.php?type=' + localStorage.getItem('type') + '&sleeve=' + localStorage.getItem('sleeve') + '&collar=' + localStorage.getItem('collar') + '&cuff=' + localStorage.getItem('cuff')).then(function (response) {
             return response.blob();
