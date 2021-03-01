@@ -10,7 +10,7 @@ localStorage.setItem('collar', 'business classic')
 localStorage.setItem('cuff', 'single button')
 localStorage.setItem('material', 'white')
 
-fetch('./php/getImage.php?type=man&sleeve=long&collar=business classic&cuff=single button').then(function(response) {
+fetch('./php/getImage.php?type=man&material=white&sleeve=long&collar=business classic&cuff=single button').then(function(response) {
     return response.blob();
   }).then(function(myBlob) {
     var objectURL = URL.createObjectURL(myBlob);
@@ -105,6 +105,10 @@ Array.prototype.forEach.call(options, (element) => {
   let woman = document.querySelector('.woman')!
   let man = document.querySelector('.man')!
 
+  let white = document.querySelector('.white')!
+  let lugaBlue = document.querySelector('.luga-blue')!
+  let purgaBlackBlue = document.querySelector('.parga-black-blue')!
+
   let long = document.querySelector('.long')!
   let short = document.querySelector('.short')!
 
@@ -125,7 +129,24 @@ Array.prototype.forEach.call(options, (element) => {
     woman.classList.remove('active')
     man.classList.add('active')
     localStorage.setItem("type", "man")
-    }
+  }
+    
+  if (e.target.classList.contains('white')) {
+    lugaBlue.classList.remove('active')
+    purgaBlackBlue.classList.remove('active')
+    white.classList.add('active')
+    localStorage.setItem("material", "white")
+  } else if(e.target.classList.contains('luga-blue')){
+    lugaBlue.classList.add('active')
+    purgaBlackBlue.classList.remove('active')
+    white.classList.remove('active')
+    localStorage.setItem("material", "luga-blue")
+  } else if(e.target.classList.contains('parga-black-blue')){
+    lugaBlue.classList.remove('active')
+    purgaBlackBlue.classList.add('active')
+    white.classList.remove('active')
+    localStorage.setItem("material", "parga-black-blue")
+  }
       
   if (e.target.classList.contains('short')) {
     long.classList.remove('active')
@@ -185,7 +206,7 @@ Array.prototype.forEach.call(options, (element) => {
   }
 
     
-  fetch('./php/getImage.php?type='+localStorage.getItem('type')+'&sleeve='+localStorage.getItem('sleeve')+'&collar='+localStorage.getItem('collar')+'&cuff='+localStorage.getItem('cuff')).then(function(response) {
+  fetch('./php/getImage.php?type='+localStorage.getItem('type')+'&material='+localStorage.getItem('material')+'&sleeve='+localStorage.getItem('sleeve')+'&collar='+localStorage.getItem('collar')+'&cuff='+localStorage.getItem('cuff')).then(function(response) {
     return response.blob();
   }).then(function(myBlob) {
     var objectURL = URL.createObjectURL(myBlob);
