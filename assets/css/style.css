@@ -116,6 +116,14 @@ main .main-image .price {
   color: white;
   top: 10%;
 }
+.btn-reset {
+  position: absolute;
+  right: 2.5rem;
+  font-size: 2em;
+  padding: 0.5rem 0.5rem;
+  color: white;
+  top: 10%;
+}
 .hidden {
   display: none;
 }
