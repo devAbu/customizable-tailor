@@ -25,6 +25,10 @@ firstImage();
 reset_button.addEventListener('click', () => {
     firstImage();
     for (let i = 0; i < elems.length; i++) {
+        if (elems[i].classList.contains('cuff')) {
+            elems[i].style.pointerEvents = 'auto';
+            elems[i].style.opacity = 1;
+        }
         elems[i].classList.remove('selected');
     }
     for (let i = 0; i < hiddenElems.length; i++) {
@@ -43,6 +47,7 @@ reset_button.addEventListener('click', () => {
     localStorage.setItem('collar', 'business classic');
     localStorage.setItem('cuff', 'single button');
     localStorage.setItem('material', 'white');
+    total_price.innerHTML = '$89';
 });
 categories.addEventListener('click', (e) => {
     for (let i = 0; i < elems.length; i++) {
@@ -151,18 +156,21 @@ Array.prototype.forEach.call(options, (element) => {
             purgaBlackBlue.classList.remove('active');
             white.classList.add('active');
             localStorage.setItem("material", "white");
+            total_price.innerHTML = '$89';
         }
         else if (e.target.classList.contains('luga-blue') || e.target.parentNode.classList.contains('luga-blue')) {
             lugaBlue.classList.add('active');
             purgaBlackBlue.classList.remove('active');
             white.classList.remove('active');
             localStorage.setItem("material", "luga-blue");
+            total_price.innerHTML = '$119';
         }
         else if (e.target.classList.contains('parga-black-blue') || e.target.parentNode.classList.contains('parga-black-blue')) {
             lugaBlue.classList.remove('active');
             purgaBlackBlue.classList.add('active');
             white.classList.remove('active');
             localStorage.setItem("material", "parga-black-blue");
+            total_price.innerHTML = '$89';
         }
         if (e.target.classList.contains('short') || e.target.parentNode.classList.contains('short')) {
             long.classList.remove('active');
