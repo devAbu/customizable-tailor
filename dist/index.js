@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 let categories = document.querySelector('.categories');
 let options_body = document.querySelector('.options-body');
 let total_price = document.querySelector('.price');
@@ -239,5 +248,37 @@ Array.prototype.forEach.call(options, (element) => {
             main_image.src = objectURL;
         });
     });
+});
+const shareButton = document.querySelector(".btn-share");
+const overlay = document.querySelector(".overlay");
+const shareModal = document.querySelector(".share");
+const title = window.document.title;
+const url = window.document.location.href;
+const options2 = { type: "image/png" };
+const shareNow = () => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("Shariiing");
+    fetch('./php/getImage.php?type=' + localStorage.getItem('type') + '&material=' + localStorage.getItem('material') + '&sleeve=' + localStorage.getItem('sleeve') + '&collar=' + localStorage.getItem('collar') + '&cuff=' + localStorage.getItem('cuff'))
+        .then(function (response) {
+        return response.blob();
+    })
+        .then(function (blob) {
+        var file = new File([blob], "picture.jpg", { type: 'image/jpeg' });
+        var filesArray = [file];
+        if (navigator.canShare && navigator.canShare({ files: filesArray })) {
+            navigator.share({
+                text: 'some_text',
+                files: filesArray,
+                title: 'some_title',
+                url: 'some_url'
+            });
+        }
+    });
+});
+shareButton.addEventListener("click", () => {
+    shareNow();
+});
+overlay.addEventListener("click", () => {
+    overlay.classList.remove("show-share");
+    shareModal.classList.remove("show-share");
 });
 //# sourceMappingURL=index.js.map
