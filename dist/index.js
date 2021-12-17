@@ -256,7 +256,6 @@ const title = window.document.title;
 const url = window.document.location.href;
 const options2 = { type: "image/png" };
 const shareNow = () => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("Shariiing");
     fetch('./php/getImage.php?type=' + localStorage.getItem('type') + '&material=' + localStorage.getItem('material') + '&sleeve=' + localStorage.getItem('sleeve') + '&collar=' + localStorage.getItem('collar') + '&cuff=' + localStorage.getItem('cuff'))
         .then(function (response) {
         return response.blob();

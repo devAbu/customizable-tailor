@@ -262,16 +262,7 @@ const url = window.document.location.href;
 const options2 = { type: "image/png" };
  
 const shareNow = async () => {
-  console.log("Shariiing")
-  /* let imageResponse = await fetch('./php/getImage.php?type=' + localStorage.getItem('type') + '&material=' + localStorage.getItem('material') + '&sleeve=' + localStorage.getItem('sleeve') + '&collar=' + localStorage.getItem('collar') + '&cuff=' + localStorage.getItem('cuff'));
-  
-  
-  let imageBuffer = await imageResponse.arrayBuffer();
-  let filesArray = [new File([imageBuffer], "File Name", {
-    type: "image/png"
-  })]; */
-
-  fetch('./php/getImage.php?type=' + localStorage.getItem('type') + '&material=' + localStorage.getItem('material') + '&sleeve=' + localStorage.getItem('sleeve') + '&collar=' + localStorage.getItem('collar') + '&cuff=' + localStorage.getItem('cuff'))
+  fetch('./php/getImage.php?type=' + localStorage.getItem('type') + '&material=' + localStorage.getItem('material') + '&sleeve=' + localStorage.getItem('sleeve') + '&collar=' + localStorage.getItem('collar') + '&cuff=' + localStorage.getItem('cuff') )
   .then(function(response) {
     return response.blob()
   })
@@ -288,49 +279,12 @@ const shareNow = async () => {
         url: 'some_url'
       });
     }
-  }
-  
-  /* if (navigator.canShare && navigator.canShare({ files: filesArray })) {
-    navigator.share({
-      files: filesArray,
-      title: title,
-      text: 'Check my custom design',
-      url: url,
-    })
-      .then(() => {
-      console.log('Thanks for sharing!');
-    })
-    .catch(console.error);
-  } else {
-    overlay.classList.add("show-share");
-    shareModal.classList.add("show-share");
-  } */
+  })
 }
 
 shareButton.addEventListener("click", () => {
   shareNow();
 })
-
-/* shareButton.addEventListener("click", () => {
-  let filesArray = new File([main_image], 'TEST SLIKA');
-
-
-  if (navigator.canShare && navigator.canShare({ files: filesArray })) {
-    console.log('juhu')
-    navigator.share({
-    files: filesArray,
-    title: 'Vacation Pictures',
-    text: 'Photos from September 27 to October 14.',
-  })
-      .then(() => {
-        console.log("Thanks for sharing");
-      })
-      .catch(console.error);
-  } else {
-    overlay.classList.add("show-share");
-    shareModal.classList.add("show-share");
-  }
-}); */
 
 overlay.addEventListener("click", () => {
   overlay.classList.remove("show-share");
